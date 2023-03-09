@@ -23,7 +23,7 @@ include('db.php');
 
         <?php
         foreach($_SESSION as $user){
-            if($user["email"] == "vasliddinali@gmail.com" && $user["password"] == "4444"){
+            if($user["email"] == "vasliddinali@gmail.com"){
                 echo '<form method="post">
                 <div class="mb-3">
                     <label for="product_name" class="form-label">Product Name</label>
@@ -83,7 +83,7 @@ include('db.php');
                     <th scope="col">Name</th>
                     <th scope="col">Price</th>
                     <th scope="col">Color</th>';
-                    if($user["email"] == "vasliddinali@gmail.com" && $user["password"] == "4444"){
+                    if($user["email"] == "vasliddinali@gmail.com"){
                         echo '<th scope="col">Update</th>
                         <th scope="col">Delete</th>';
                     }
@@ -95,9 +95,9 @@ include('db.php');
                         <td>' . $row['product_name'] . '</td>
                         <td>' . $row['product_price'] . ' so`m</td>
                         <td>' . $row['product_color'] . '</td>';
-                        if($user["email"] == "vasliddinali@gmail.com" && $user["password"] == "4444"){
-                            echo '<td><a href="update.php?id='. $row['id'] .'" class="mr-3">Update</a></td>
-                            <td><a href="delete.php?id='. $row['id'] .'" class="mr-3">Delete</a></td>';
+                        if($user["email"] == "vasliddinali@gmail.com"){
+                            echo '<td><a href="update.php?id='. $row['id'] .'" class="btn btn-success">Update</a></td>
+                            <td><a href="delete.php?id='. $row['id'] .'" class="btn btn-danger">Delete</a></td>';
                         }
                     echo '</tr>
                     </tbody>';

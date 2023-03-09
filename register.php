@@ -30,25 +30,23 @@ include('db.php');
             </div>
             <button type="submit" name="submit_user" class="btn btn-primary">Submit</button>
             <p>I have user already <a href="/projects/login.php">Login page</a></p>
-            </form>
-            
-            
+        </form>
+
         <?php
         $users = $conn->prepare("INSERT INTO users (users_name, users_email, users_password) VALUE(?, ?, ?)");
         $users->bind_param("sss", $users_name, $users_email, $users_password);
 
-        $query = 'SELECT * FROM users';
-        $result = $conn->query($query);
-        print_r($result);
-
         if(isset($_POST['submit_user'])){
             $users_email = $_POST['users_email'];
-            if ($users_email != $result['users_email']) {
+            $query = "SELECT * FROM users WHERE `users_email` = '". $users_email ."' LIMIT 1";
+            $result = $conn->query($query);
+
+            if ($result->num_rows > 0) {
+                echo "This user is already use. <a href='/projects/login.php'>Go to login page</a>";
+            } else {
                 $users->execute();
                 echo "New records created successfully";
                 // header("Refresh:0");
-            } else {
-                echo "This user is already use. <a href='/projects/login.php'>Go to login page</a>";
             }
         }
     ?>
